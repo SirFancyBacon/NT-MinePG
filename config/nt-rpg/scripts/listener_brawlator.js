@@ -1,7 +1,8 @@
 registerEventListener({
-  type: Java.type('org.spongepowered.api.event.entity.AttackEntityEvent'),
+  type: Java.type('com.onaple.brawlator.events.BrawlatorEntityDiedEvent'),
   consumer: new java.util.function.Consumer( function(event) {
-    var Sponge = Java.type("org.spongepowered.api.Sponge")
-    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "nadmin exp hellbringer616 10 PVE");
+    var Sponge = Java.type("org.spongepowered.api.Sponge");
+    var playerName = event.getPlayer().getName();
+    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "nadmin exp "+playerName+" 10 PVE");
   })
 });
