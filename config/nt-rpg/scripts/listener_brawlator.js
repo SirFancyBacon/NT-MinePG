@@ -3,6 +3,8 @@ registerEventListener({
   consumer: new java.util.function.Consumer( function(event) {
     var Sponge = Java.type("org.spongepowered.api.Sponge");
     var playerName = event.getPlayer().getName();
-    Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "nadmin exp "+playerName+" 10 PVE");
+    var brawlatorMob = event.getEntity();
+    var xp = brawlatorMob.get(BrawlatorKeys.EXPERIENCE);
+      Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "nadmin exp " + playerName + " " + xp +" PVE");
   })
 });
