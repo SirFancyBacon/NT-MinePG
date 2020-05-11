@@ -1,11 +1,16 @@
+//Listener event to be used with Brawlator
+//Listens for a Mob to die and gives XP to the player.
 registerEventListener({
   type: Java.type('com.onaple.brawlator.events.BrawlatorEntityDiedEvent'),
   consumer: new java.util.function.Consumer( function(event) {
-    var Sponge = Java.type("org.spongepowered.api.Sponge");
-    var BrawlatorData = Java.type('com.onaple.brawlator.data.manipulators.MonsterLootManipulator')
-    var playerName = event.getPlayer().getName();
-    var brawlatorMob = event.getEntity();
-    var xp = brawlatorMob.get(BrawlatorData);
-      Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "nadmin exp " + playerName + " " + xp +" PVE");
+    var Sponge = Java.type('org.spongepowered.api.Sponge'); //loads Sponge
+    var BrawlatorKeys = Java.type('com.onaple.brawlator.BrawlatorKeys') //loads BrawlatorKeys from Brawlator plugin
+    var playerName = event.getPlayer().getName(); //gets Player Name of player that killed the mob
+    var brawlatorMob = event.getEntity(); //gets Brawlator Mob killed
+    var xp = brawlatorMob.get(BrawlatorKeys.EXPERIENCE); //gets experience key from config of killed Mob; optional
+      //Checks if XP value is present on Mob, if yes run command.
+      if (xp.ispresent()){
+        Sponge.getCommandManager().process(Sponge.getServer().getConsole(), "nadmin exp " + playerName + " " + xp.get() +" PVE"); //Gives player XP to all classes with PVE source.
+      }
   })
 });
