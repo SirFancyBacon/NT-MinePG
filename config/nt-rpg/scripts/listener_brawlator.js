@@ -4,7 +4,7 @@ registerEventListener({
   type: Java.type('com.onaple.brawlator.events.BrawlatorEntityDiedEvent'),
   consumer: new java.util.function.Consumer( function(event) {
     var Sponge = Java.type('org.spongepowered.api.Sponge'); //loads Sponge
-    var BrawlatorKeys = Java.type('com.onaple.brawlator.BrawlatorKeys') //loads BrawlatorKeys from Brawlator plugin
+    var BrawlatorKeys = Java.type('com.onaple.brawlator.BrawlatorKeys'); //loads BrawlatorKeys from Brawlator plugin
     var playerName = event.getPlayer().getName(); //gets Player Name of player that killed the mob
     var brawlatorMob = event.getEntity(); //gets Brawlator Mob killed
     var xp = brawlatorMob.get(BrawlatorKeys.EXPERIENCE); //gets experience key from config of killed Mob; optional
