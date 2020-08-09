@@ -6,6 +6,7 @@ registerSkillHandler('ntminepg:zerkHealthDamage',{
     var effect = new MyEffect("zerkRage", character); //creates an effect on the character called zerkRage
     var totalDuration = param("duration", context); //creates "duration" and "duration_levelbonus" configuration options in the skilltree file
     effect.setDuration(totalDuration);
+    Rpg.get().getEffectService().addEffect(effect)
 
     return SkillResult.OK;
   }
